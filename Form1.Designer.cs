@@ -246,7 +246,7 @@
             Controls.Add(cb_Jahr);
             MainMenuStrip = ms_1;
             Name = "HauptForm";
-            Text = "Bundesliga Analyser";
+            Text = "Bundesliga Analyzer";
             Load += HauptForm_Load;
             ((System.ComponentModel.ISupportInitialize)n_Tag).EndInit();
             ms_1.ResumeLayout(false);

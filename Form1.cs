@@ -1,3 +1,6 @@
+using BundesligaAnalyzer;
+using System.Text.Json;
+
 namespace BundesligaAnalyser
 {
     public partial class HauptForm : Form
@@ -14,8 +17,14 @@ namespace BundesligaAnalyser
 
         private void ergebnisseAktualisierenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ergebnisse");
-            // Übergang  
+            APIManager api = new APIManager();
+
+            string json =
+                api.GetJson(cb_Liga.Text, cb_Jahr.Text);
+
+            api.ReadJson(json, cb_Liga.Text, cb_Jahr.Text);
+
+             
             tbc1.SelectedTab = p_Prognose;
         }
 
@@ -49,6 +58,9 @@ namespace BundesligaAnalyser
             cb_Liga.SelectedIndex = 0; // Bundeliga2
                                        
             n_Tag.Value = 34; // Voreingestellter Spieltag.
+
+            DataBaseManager db = new DataBaseManager(); 
+            db.CreateDatabase();
 
         }
     }
