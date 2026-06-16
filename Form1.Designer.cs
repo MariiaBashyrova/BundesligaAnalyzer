@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HauptForm));
             cb_Jahr = new ComboBox();
             cb_Liga = new ComboBox();
             l1 = new Label();
@@ -61,26 +64,29 @@
             // 
             cb_Jahr.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_Jahr.FormattingEnabled = true;
-            cb_Jahr.Location = new Point(326, 51);
+            cb_Jahr.Location = new Point(408, 64);
+            cb_Jahr.Margin = new Padding(4);
             cb_Jahr.Name = "cb_Jahr";
-            cb_Jahr.Size = new Size(135, 28);
+            cb_Jahr.Size = new Size(168, 33);
             cb_Jahr.TabIndex = 0;
             // 
             // cb_Liga
             // 
             cb_Liga.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_Liga.FormattingEnabled = true;
-            cb_Liga.Location = new Point(326, 85);
+            cb_Liga.Location = new Point(408, 106);
+            cb_Liga.Margin = new Padding(4);
             cb_Liga.Name = "cb_Liga";
-            cb_Liga.Size = new Size(135, 28);
+            cb_Liga.Size = new Size(168, 33);
             cb_Liga.TabIndex = 1;
             // 
             // l1
             // 
             l1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            l1.Location = new Point(0, 51);
+            l1.Location = new Point(0, 64);
+            l1.Margin = new Padding(4, 0, 4, 0);
             l1.Name = "l1";
-            l1.Size = new Size(320, 28);
+            l1.Size = new Size(400, 35);
             l1.TabIndex = 2;
             l1.Text = "Wählen Sie die Saison der Liga aus";
             l1.TextAlign = ContentAlignment.MiddleRight;
@@ -89,9 +95,10 @@
             // l2
             // 
             l2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            l2.Location = new Point(52, 85);
+            l2.Location = new Point(65, 106);
+            l2.Margin = new Padding(4, 0, 4, 0);
             l2.Name = "l2";
-            l2.Size = new Size(268, 28);
+            l2.Size = new Size(335, 35);
             l2.TabIndex = 3;
             l2.Text = "Wählen Sie die Bundesliga aus";
             l2.TextAlign = ContentAlignment.MiddleRight;
@@ -99,21 +106,25 @@
             // l3
             // 
             l3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            l3.Location = new Point(110, 119);
+            l3.Location = new Point(138, 149);
+            l3.Margin = new Padding(4, 0, 4, 0);
             l3.Name = "l3";
-            l3.Size = new Size(210, 28);
+            l3.Size = new Size(262, 35);
             l3.TabIndex = 5;
             l3.Text = "Wähle einen Spieltag aus";
             l3.TextAlign = ContentAlignment.MiddleRight;
             // 
             // n_Tag
             // 
-            n_Tag.Location = new Point(326, 119);
+            n_Tag.Location = new Point(408, 149);
+            n_Tag.Margin = new Padding(4);
             n_Tag.Maximum = new decimal(new int[] { 34, 0, 0, 0 });
+            n_Tag.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             n_Tag.Name = "n_Tag";
-            n_Tag.Size = new Size(101, 27);
+            n_Tag.Size = new Size(126, 31);
             n_Tag.TabIndex = 7;
             n_Tag.TextAlign = HorizontalAlignment.Right;
+            n_Tag.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // ms_1
             // 
@@ -123,35 +134,36 @@
             ms_1.Items.AddRange(new ToolStripItem[] { ergebnisseAktualisierenToolStripMenuItem, prognToolStripMenuItem, spieleAnzeigenToolStripMenuItem, spieltageToolStripMenuItem });
             ms_1.Location = new Point(0, 0);
             ms_1.Name = "ms_1";
-            ms_1.Size = new Size(839, 31);
+            ms_1.Padding = new Padding(8, 2, 0, 2);
+            ms_1.Size = new Size(1049, 38);
             ms_1.TabIndex = 10;
             ms_1.Text = "menuStrip1";
             // 
             // ergebnisseAktualisierenToolStripMenuItem
             // 
             ergebnisseAktualisierenToolStripMenuItem.Name = "ergebnisseAktualisierenToolStripMenuItem";
-            ergebnisseAktualisierenToolStripMenuItem.Size = new Size(216, 27);
+            ergebnisseAktualisierenToolStripMenuItem.Size = new Size(264, 34);
             ergebnisseAktualisierenToolStripMenuItem.Text = "Ergebnisse aktualisieren";
             ergebnisseAktualisierenToolStripMenuItem.Click += ergebnisseAktualisierenToolStripMenuItem_Click;
             // 
             // prognToolStripMenuItem
             // 
             prognToolStripMenuItem.Name = "prognToolStripMenuItem";
-            prognToolStripMenuItem.Size = new Size(186, 27);
+            prognToolStripMenuItem.Size = new Size(231, 34);
             prognToolStripMenuItem.Text = "Prognose berechnen";
             prognToolStripMenuItem.Click += prognToolStripMenuItem_Click;
             // 
             // spieleAnzeigenToolStripMenuItem
             // 
             spieleAnzeigenToolStripMenuItem.Name = "spieleAnzeigenToolStripMenuItem";
-            spieleAnzeigenToolStripMenuItem.Size = new Size(149, 27);
+            spieleAnzeigenToolStripMenuItem.Size = new Size(182, 34);
             spieleAnzeigenToolStripMenuItem.Text = "Spiele anzeigen";
             spieleAnzeigenToolStripMenuItem.Click += spieleAnzeigenToolStripMenuItem_Click;
             // 
             // spieltageToolStripMenuItem
             // 
             spieltageToolStripMenuItem.Name = "spieltageToolStripMenuItem";
-            spieltageToolStripMenuItem.Size = new Size(197, 27);
+            spieltageToolStripMenuItem.Size = new Size(239, 34);
             spieltageToolStripMenuItem.Text = "Spieltage vergleichen";
             spieltageToolStripMenuItem.Click += spieltageToolStripMenuItem_Click;
             // 
@@ -162,61 +174,91 @@
             tbc1.Controls.Add(p_Spiele);
             tbc1.Controls.Add(p_Vergleich);
             tbc1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tbc1.Location = new Point(8, 172);
+            tbc1.Location = new Point(10, 215);
+            tbc1.Margin = new Padding(4);
             tbc1.Name = "tbc1";
             tbc1.SelectedIndex = 0;
-            tbc1.Size = new Size(830, 417);
+            tbc1.Size = new Size(1038, 521);
             tbc1.TabIndex = 11;
             // 
             // p_Prognose
             // 
             p_Prognose.Controls.Add(dg_Prognose);
-            p_Prognose.Location = new Point(4, 34);
+            p_Prognose.Location = new Point(4, 39);
+            p_Prognose.Margin = new Padding(4);
             p_Prognose.Name = "p_Prognose";
-            p_Prognose.Padding = new Padding(3);
-            p_Prognose.Size = new Size(822, 379);
+            p_Prognose.Padding = new Padding(4);
+            p_Prognose.Size = new Size(1030, 478);
             p_Prognose.TabIndex = 0;
             p_Prognose.Text = "Turniertabelle";
             p_Prognose.UseVisualStyleBackColor = true;
             // 
             // dg_Prognose
             // 
+            dg_Prognose.AllowUserToAddRows = false;
+            dg_Prognose.AllowUserToDeleteRows = false;
+            dg_Prognose.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dg_Prognose.BorderStyle = BorderStyle.None;
+            dg_Prognose.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dg_Prognose.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dg_Prognose.Dock = DockStyle.Fill;
-            dg_Prognose.Location = new Point(3, 3);
+            dg_Prognose.Location = new Point(4, 4);
+            dg_Prognose.Margin = new Padding(4);
             dg_Prognose.Name = "dg_Prognose";
-            dg_Prognose.RowHeadersWidth = 51;
-            dg_Prognose.Size = new Size(816, 373);
+            dg_Prognose.ReadOnly = true;
+            dg_Prognose.RowHeadersVisible = false;
+            dg_Prognose.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dg_Prognose.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dg_Prognose.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dg_Prognose.Size = new Size(1022, 470);
             dg_Prognose.TabIndex = 1;
             // 
             // p_Spiele
             // 
             p_Spiele.Controls.Add(dg_Spiele);
-            p_Spiele.Location = new Point(4, 34);
+            p_Spiele.Location = new Point(4, 39);
+            p_Spiele.Margin = new Padding(4);
             p_Spiele.Name = "p_Spiele";
-            p_Spiele.Padding = new Padding(3);
-            p_Spiele.Size = new Size(822, 379);
+            p_Spiele.Padding = new Padding(4);
+            p_Spiele.Size = new Size(1030, 478);
             p_Spiele.TabIndex = 1;
             p_Spiele.Text = "Spiele";
             p_Spiele.UseVisualStyleBackColor = true;
             // 
             // dg_Spiele
             // 
+            dg_Spiele.AllowUserToAddRows = false;
+            dg_Spiele.AllowUserToDeleteRows = false;
+            dg_Spiele.AllowUserToOrderColumns = true;
+            dg_Spiele.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dg_Spiele.BorderStyle = BorderStyle.None;
+            dg_Spiele.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dg_Spiele.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dg_Spiele.Dock = DockStyle.Fill;
-            dg_Spiele.Location = new Point(3, 3);
+            dg_Spiele.Location = new Point(4, 4);
+            dg_Spiele.Margin = new Padding(4);
             dg_Spiele.Name = "dg_Spiele";
-            dg_Spiele.RowHeadersWidth = 51;
-            dg_Spiele.Size = new Size(816, 373);
+            dg_Spiele.ReadOnly = true;
+            dg_Spiele.RowHeadersVisible = false;
+            dg_Spiele.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dg_Spiele.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dg_Spiele.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dg_Spiele.Size = new Size(1022, 470);
             dg_Spiele.TabIndex = 1;
             // 
             // p_Vergleich
             // 
             p_Vergleich.Controls.Add(dg_Vergleich);
-            p_Vergleich.Location = new Point(4, 34);
+            p_Vergleich.Location = new Point(4, 39);
+            p_Vergleich.Margin = new Padding(4);
             p_Vergleich.Name = "p_Vergleich";
-            p_Vergleich.Padding = new Padding(3);
-            p_Vergleich.Size = new Size(822, 379);
+            p_Vergleich.Padding = new Padding(4);
+            p_Vergleich.Size = new Size(1030, 478);
             p_Vergleich.TabIndex = 2;
             p_Vergleich.Text = "Vergleich";
             p_Vergleich.UseVisualStyleBackColor = true;
@@ -225,17 +267,18 @@
             // 
             dg_Vergleich.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dg_Vergleich.Dock = DockStyle.Fill;
-            dg_Vergleich.Location = new Point(3, 3);
+            dg_Vergleich.Location = new Point(4, 4);
+            dg_Vergleich.Margin = new Padding(4);
             dg_Vergleich.Name = "dg_Vergleich";
             dg_Vergleich.RowHeadersWidth = 51;
-            dg_Vergleich.Size = new Size(816, 373);
+            dg_Vergleich.Size = new Size(1022, 470);
             dg_Vergleich.TabIndex = 0;
             // 
             // HauptForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(839, 591);
+            ClientSize = new Size(1049, 739);
             Controls.Add(tbc1);
             Controls.Add(ms_1);
             Controls.Add(n_Tag);
@@ -244,7 +287,9 @@
             Controls.Add(l1);
             Controls.Add(cb_Liga);
             Controls.Add(cb_Jahr);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = ms_1;
+            Margin = new Padding(4);
             Name = "HauptForm";
             Text = "Bundesliga Analyzer";
             Load += HauptForm_Load;

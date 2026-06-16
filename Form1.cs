@@ -1,5 +1,7 @@
-using BundesligaAnalyzer;
+using System.Data;
 using System.Text.Json;
+using System.Windows.Forms;
+using BundesligaAnalyser;
 
 namespace BundesligaAnalyser
 {
@@ -30,14 +32,93 @@ namespace BundesligaAnalyser
 
         private void prognToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Prognose");
+            //MessageBox.Show("Prognose");
+            DataBaseManager db = new DataBaseManager();
+            DataTable dt    = db.PrognoseBerechnen(cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
+            dg_Prognose.DataSource = dt;
+            
             tbc1.SelectedTab = p_Prognose;
+            bool check = db.SaveForecast(dt, cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
+
+            foreach (DataGridViewRow row in dg_Prognose.Rows)
+            {
+                if (Convert.ToInt32(row.Cells["Platz"].Value) < 4)
+                {
+
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(214, 250, 214);
+                       // Color.LightGreen;
+
+                }
+                else if (Convert.ToInt32(row.Cells["Platz"].Value) > 15)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(250, 214 , 214);
+                    //Color.LightPink;
+                }
+
+            }
+            dg_Prognose.Columns["id"].Visible = false;
+
+            foreach (DataGridViewColumn col in dg_Prognose.Columns)
+            {
+                if (col.Name == "Mannschaft")
+                {
+                    col.Width = 150;
+                    col.DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleLeft;
+                }
+                
+                else
+                {
+                    col.Width = 60;
+                    col.DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleCenter;
+                }
+            }
         }
 
         private void spieleAnzeigenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Spiele");
+            //MessageBox.Show("Spiele");
+
+            DataBaseManager db = new DataBaseManager();
+
             tbc1.SelectedTab = p_Spiele;
+            dg_Spiele.DataSource = db.GetMatches(cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
+
+            foreach (DataGridViewRow row in dg_Spiele.Rows)
+            {
+                if (row.Cells["Played"].Value.ToString() == "1")
+                {
+                    
+                        row.DefaultCellStyle.BackColor =  Color.FromArgb(240, 240, 240);
+                    
+                }
+
+            }
+            dg_Spiele.Columns["Played"].Visible = false;
+
+            foreach (DataGridViewColumn col in dg_Spiele.Columns)
+            {
+                if (col.Name == "Datum")
+                {
+                    col.Width = 120;
+                    col.DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleCenter;
+                }
+                else if (col.Name == "Heim" ||
+                         col.Name == "Gast")
+                {
+                    col.Width = 180;
+                    col.DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleLeft;
+                }
+                else
+                {
+                    col.Width = 60;
+                    col.DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleCenter;
+                }
+            }
         }
 
         private void spieltageToolStripMenuItem_Click(object sender, EventArgs e)
