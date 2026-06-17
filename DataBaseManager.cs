@@ -159,9 +159,9 @@ namespace BundesligaAnalyser
             DataTable table = new DataTable(); //
             SqliteConnection connection =
                 new SqliteConnection(сonnectionString);
-            int liga_Id = league == "BL1"? 1 : 2;
+            int liga_Id = league == "BL1" ? 1 : 2;
             int season = int.Parse(season_);
-            
+
 
             try
             {
@@ -189,7 +189,7 @@ namespace BundesligaAnalyser
                 cmd.Parameters.AddWithValue("@matchday", mday);
 
                 SqliteDataReader reader = cmd.ExecuteReader();
-                
+
                 table.Load(reader);
 
                 foreach (DataRow row in table.Rows)
@@ -360,7 +360,7 @@ namespace BundesligaAnalyser
 
                 table.Load(reader);
 
-                
+
 
 
             }
@@ -411,21 +411,21 @@ namespace BundesligaAnalyser
 
                     SELECT 
                         f1.team_name AS Mannschaft,
-                        f1.platz AS Platz_alt,
-                        f2.platz AS Platz_neu,
+                        f1.platz AS ""Alter Platz"",
+                        f2.platz AS ""Neuer Platz"",
                         CAST((f1.platz - f2.platz) AS TEXT) AS Aenderung
 
                     FROM f1
                     JOIN f2 
                         ON f1.team_id = f2.team_id AND f1.team_id IS NOT NULL
 
-                    ORDER BY Platz_neu;";
+                    ORDER BY f2.platz;";
                 SqliteCommand cmd =
                    new SqliteCommand(abfrage, connection);
 
                 cmd.Parameters.AddWithValue("@liga", liga_Id);
                 cmd.Parameters.AddWithValue("@season", season);
-                cmd.Parameters.AddWithValue("@matchday1", mday-1);
+                cmd.Parameters.AddWithValue("@matchday1", mday - 1);
                 cmd.Parameters.AddWithValue("@matchday2", mday);
 
                 SqliteDataReader reader = cmd.ExecuteReader();
@@ -444,11 +444,11 @@ namespace BundesligaAnalyser
         }
         public bool SaveForecast(DataTable table, string league, string season_, int mday)
         {
-            
+
             SqliteConnection connection =
                 new SqliteConnection(сonnectionString);
             bool check = true;
-            
+
             int liga_id = league == "BL1" ? 1 : 2;
             int season = int.Parse(season_);
 
@@ -474,7 +474,7 @@ namespace BundesligaAnalyser
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@id", row["id"]);
                     cmd.Parameters.AddWithValue("@liga_id", liga_id);
-                    cmd.Parameters.AddWithValue("@season", season); 
+                    cmd.Parameters.AddWithValue("@season", season);
                     cmd.Parameters.AddWithValue("@matchday", mday);
                     cmd.Parameters.AddWithValue("@name", row["Mannschaft"]);
                     cmd.Parameters.AddWithValue("@platz", row["Platz"]);
@@ -484,8 +484,8 @@ namespace BundesligaAnalyser
 
                     cmd.ExecuteNonQuery();
                 }
-               
-               
+
+
             }
             catch (Exception ex)
             {
@@ -495,5 +495,51 @@ namespace BundesligaAnalyser
             finally { connection.Close(); }
             return check;
         }
+
+        public void TestDaten()
+        {
+            DataTable table = new DataTable();
+            SqliteConnection connection =
+                new SqliteConnection(сonnectionString);
+            int liga_Id = 1;
+            int season = 2025;
+            int mday = 34;
+            
+            
+        }
+
+        public bool EsGibtDaten(int liga_id, int season, int mday)
+        {
+            bool check = false;
+            SqliteConnection connection =
+               new SqliteConnection(сonnectionString);
+            try
+            {
+                connection.Open();
+
+                string abfrage = @"SELECT * FROM matches WHERE
+                    liga_id = @liga AND season = @season AND matchday = @matchday";
+
+                SqliteCommand cmd =
+                    new SqliteCommand(abfrage, connection);
+
+                cmd.Parameters.AddWithValue("@liga", liga_id);
+                cmd.Parameters.AddWithValue("@season", season);
+                cmd.Parameters.AddWithValue("@matchday", mday);
+
+                SqliteDataReader reader = cmd.ExecuteReader();
+                if (reader.Read()) check = true; 
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+
+            }
+            finally { connection.Close(); }
+            return check;
+        }
+
     }
 }

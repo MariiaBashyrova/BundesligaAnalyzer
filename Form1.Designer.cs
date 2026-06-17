@@ -50,6 +50,7 @@
             spieleAnzeigenToolStripMenuItem = new ToolStripMenuItem();
             spieltageToolStripMenuItem = new ToolStripMenuItem();
             ms_1 = new MenuStrip();
+            TestButton = new Button();
             ((System.ComponentModel.ISupportInitialize)n_Tag).BeginInit();
             tbc1.SuspendLayout();
             p_Prognose.SuspendLayout();
@@ -177,6 +178,7 @@
             dg_Prognose.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dg_Prognose.Size = new Size(946, 451);
             dg_Prognose.TabIndex = 1;
+            dg_Prognose.CellContentDoubleClick += dg_Prognose_CellContentDoubleClick;
             // 
             // p_Spiele
             // 
@@ -232,7 +234,6 @@
             dg_Vergleich.AllowUserToAddRows = false;
             dg_Vergleich.AllowUserToDeleteRows = false;
             dg_Vergleich.AllowUserToOrderColumns = true;
-            dg_Vergleich.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dg_Vergleich.BackgroundColor = Color.White;
             dg_Vergleich.BorderStyle = BorderStyle.None;
             dg_Vergleich.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -291,12 +292,23 @@
             ms_1.TabIndex = 10;
             ms_1.Text = "menuStrip1";
             // 
+            // TestButton
+            // 
+            TestButton.Location = new Point(646, 63);
+            TestButton.Name = "TestButton";
+            TestButton.Size = new Size(171, 61);
+            TestButton.TabIndex = 12;
+            TestButton.Text = "Daten für den Test vorbereiten";
+            TestButton.UseVisualStyleBackColor = true;
+            TestButton.Click += TestButton_Click;
+            // 
             // HauptForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(973, 720);
+            Controls.Add(TestButton);
             Controls.Add(tbc1);
             Controls.Add(ms_1);
             Controls.Add(n_Tag);
@@ -346,5 +358,6 @@
         private ToolStripMenuItem spieleAnzeigenToolStripMenuItem;
         private ToolStripMenuItem spieltageToolStripMenuItem;
         private MenuStrip ms_1;
+        private Button TestButton;
     }
 }
