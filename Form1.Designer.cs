@@ -30,6 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HauptForm));
             cb_Jahr = new ComboBox();
             cb_Liga = new ComboBox();
@@ -37,11 +38,6 @@
             l2 = new Label();
             l3 = new Label();
             n_Tag = new NumericUpDown();
-            ms_1 = new MenuStrip();
-            ergebnisseAktualisierenToolStripMenuItem = new ToolStripMenuItem();
-            prognToolStripMenuItem = new ToolStripMenuItem();
-            spieleAnzeigenToolStripMenuItem = new ToolStripMenuItem();
-            spieltageToolStripMenuItem = new ToolStripMenuItem();
             tbc1 = new TabControl();
             p_Prognose = new TabPage();
             dg_Prognose = new DataGridView();
@@ -49,8 +45,12 @@
             dg_Spiele = new DataGridView();
             p_Vergleich = new TabPage();
             dg_Vergleich = new DataGridView();
+            ergebnisseAktualisierenToolStripMenuItem = new ToolStripMenuItem();
+            prognToolStripMenuItem = new ToolStripMenuItem();
+            spieleAnzeigenToolStripMenuItem = new ToolStripMenuItem();
+            spieltageToolStripMenuItem = new ToolStripMenuItem();
+            ms_1 = new MenuStrip();
             ((System.ComponentModel.ISupportInitialize)n_Tag).BeginInit();
-            ms_1.SuspendLayout();
             tbc1.SuspendLayout();
             p_Prognose.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dg_Prognose).BeginInit();
@@ -58,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)dg_Spiele).BeginInit();
             p_Vergleich.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dg_Vergleich).BeginInit();
+            ms_1.SuspendLayout();
             SuspendLayout();
             // 
             // cb_Jahr
@@ -126,18 +127,127 @@
             n_Tag.TextAlign = HorizontalAlignment.Right;
             n_Tag.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // ms_1
+            // tbc1
             // 
-            ms_1.BackColor = SystemColors.ButtonHighlight;
-            ms_1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ms_1.ImageScalingSize = new Size(20, 20);
-            ms_1.Items.AddRange(new ToolStripItem[] { ergebnisseAktualisierenToolStripMenuItem, prognToolStripMenuItem, spieleAnzeigenToolStripMenuItem, spieltageToolStripMenuItem });
-            ms_1.Location = new Point(0, 0);
-            ms_1.Name = "ms_1";
-            ms_1.Padding = new Padding(8, 2, 0, 2);
-            ms_1.Size = new Size(1049, 38);
-            ms_1.TabIndex = 10;
-            ms_1.Text = "menuStrip1";
+            tbc1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tbc1.Controls.Add(p_Prognose);
+            tbc1.Controls.Add(p_Spiele);
+            tbc1.Controls.Add(p_Vergleich);
+            tbc1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tbc1.ImeMode = ImeMode.KatakanaHalf;
+            tbc1.Location = new Point(10, 215);
+            tbc1.Margin = new Padding(4);
+            tbc1.Name = "tbc1";
+            tbc1.SelectedIndex = 0;
+            tbc1.Size = new Size(962, 502);
+            tbc1.TabIndex = 11;
+            // 
+            // p_Prognose
+            // 
+            p_Prognose.Controls.Add(dg_Prognose);
+            p_Prognose.Location = new Point(4, 39);
+            p_Prognose.Margin = new Padding(4);
+            p_Prognose.Name = "p_Prognose";
+            p_Prognose.Padding = new Padding(4);
+            p_Prognose.Size = new Size(954, 459);
+            p_Prognose.TabIndex = 0;
+            p_Prognose.Text = "Turniertabelle";
+            p_Prognose.UseVisualStyleBackColor = true;
+            // 
+            // dg_Prognose
+            // 
+            dg_Prognose.AllowUserToAddRows = false;
+            dg_Prognose.AllowUserToDeleteRows = false;
+            dg_Prognose.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dg_Prognose.BackgroundColor = Color.White;
+            dg_Prognose.BorderStyle = BorderStyle.None;
+            dg_Prognose.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dg_Prognose.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dg_Prognose.Dock = DockStyle.Fill;
+            dg_Prognose.GridColor = SystemColors.Window;
+            dg_Prognose.Location = new Point(4, 4);
+            dg_Prognose.Margin = new Padding(4);
+            dg_Prognose.Name = "dg_Prognose";
+            dg_Prognose.ReadOnly = true;
+            dg_Prognose.RowHeadersVisible = false;
+            dg_Prognose.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dg_Prognose.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dg_Prognose.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dg_Prognose.Size = new Size(946, 451);
+            dg_Prognose.TabIndex = 1;
+            // 
+            // p_Spiele
+            // 
+            p_Spiele.Controls.Add(dg_Spiele);
+            p_Spiele.Location = new Point(4, 39);
+            p_Spiele.Margin = new Padding(4);
+            p_Spiele.Name = "p_Spiele";
+            p_Spiele.Padding = new Padding(4);
+            p_Spiele.Size = new Size(954, 459);
+            p_Spiele.TabIndex = 1;
+            p_Spiele.Text = "Spiele";
+            p_Spiele.UseVisualStyleBackColor = true;
+            // 
+            // dg_Spiele
+            // 
+            dg_Spiele.AllowUserToAddRows = false;
+            dg_Spiele.AllowUserToDeleteRows = false;
+            dg_Spiele.AllowUserToOrderColumns = true;
+            dg_Spiele.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dg_Spiele.BackgroundColor = Color.White;
+            dg_Spiele.BorderStyle = BorderStyle.None;
+            dg_Spiele.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dg_Spiele.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dg_Spiele.Dock = DockStyle.Fill;
+            dg_Spiele.Location = new Point(4, 4);
+            dg_Spiele.Margin = new Padding(4);
+            dg_Spiele.Name = "dg_Spiele";
+            dg_Spiele.ReadOnly = true;
+            dg_Spiele.RowHeadersVisible = false;
+            dg_Spiele.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dg_Spiele.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dg_Spiele.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dg_Spiele.Size = new Size(946, 451);
+            dg_Spiele.TabIndex = 1;
+            // 
+            // p_Vergleich
+            // 
+            p_Vergleich.Controls.Add(dg_Vergleich);
+            p_Vergleich.Location = new Point(4, 39);
+            p_Vergleich.Margin = new Padding(4);
+            p_Vergleich.Name = "p_Vergleich";
+            p_Vergleich.Padding = new Padding(4);
+            p_Vergleich.Size = new Size(954, 459);
+            p_Vergleich.TabIndex = 2;
+            p_Vergleich.Text = "Vergleich";
+            p_Vergleich.UseVisualStyleBackColor = true;
+            // 
+            // dg_Vergleich
+            // 
+            dg_Vergleich.AllowUserToAddRows = false;
+            dg_Vergleich.AllowUserToDeleteRows = false;
+            dg_Vergleich.AllowUserToOrderColumns = true;
+            dg_Vergleich.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dg_Vergleich.BackgroundColor = Color.White;
+            dg_Vergleich.BorderStyle = BorderStyle.None;
+            dg_Vergleich.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dg_Vergleich.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dg_Vergleich.Dock = DockStyle.Fill;
+            dg_Vergleich.Location = new Point(4, 4);
+            dg_Vergleich.Margin = new Padding(4);
+            dg_Vergleich.Name = "dg_Vergleich";
+            dg_Vergleich.RowHeadersVisible = false;
+            dg_Vergleich.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dg_Vergleich.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dg_Vergleich.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dg_Vergleich.Size = new Size(946, 451);
+            dg_Vergleich.TabIndex = 0;
             // 
             // ergebnisseAktualisierenToolStripMenuItem
             // 
@@ -167,118 +277,26 @@
             spieltageToolStripMenuItem.Text = "Spieltage vergleichen";
             spieltageToolStripMenuItem.Click += spieltageToolStripMenuItem_Click;
             // 
-            // tbc1
+            // ms_1
             // 
-            tbc1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tbc1.Controls.Add(p_Prognose);
-            tbc1.Controls.Add(p_Spiele);
-            tbc1.Controls.Add(p_Vergleich);
-            tbc1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tbc1.Location = new Point(10, 215);
-            tbc1.Margin = new Padding(4);
-            tbc1.Name = "tbc1";
-            tbc1.SelectedIndex = 0;
-            tbc1.Size = new Size(1038, 521);
-            tbc1.TabIndex = 11;
-            // 
-            // p_Prognose
-            // 
-            p_Prognose.Controls.Add(dg_Prognose);
-            p_Prognose.Location = new Point(4, 39);
-            p_Prognose.Margin = new Padding(4);
-            p_Prognose.Name = "p_Prognose";
-            p_Prognose.Padding = new Padding(4);
-            p_Prognose.Size = new Size(1030, 478);
-            p_Prognose.TabIndex = 0;
-            p_Prognose.Text = "Turniertabelle";
-            p_Prognose.UseVisualStyleBackColor = true;
-            // 
-            // dg_Prognose
-            // 
-            dg_Prognose.AllowUserToAddRows = false;
-            dg_Prognose.AllowUserToDeleteRows = false;
-            dg_Prognose.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dg_Prognose.BorderStyle = BorderStyle.None;
-            dg_Prognose.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dg_Prognose.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dg_Prognose.Dock = DockStyle.Fill;
-            dg_Prognose.Location = new Point(4, 4);
-            dg_Prognose.Margin = new Padding(4);
-            dg_Prognose.Name = "dg_Prognose";
-            dg_Prognose.ReadOnly = true;
-            dg_Prognose.RowHeadersVisible = false;
-            dg_Prognose.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dg_Prognose.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            dg_Prognose.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dg_Prognose.Size = new Size(1022, 470);
-            dg_Prognose.TabIndex = 1;
-            // 
-            // p_Spiele
-            // 
-            p_Spiele.Controls.Add(dg_Spiele);
-            p_Spiele.Location = new Point(4, 39);
-            p_Spiele.Margin = new Padding(4);
-            p_Spiele.Name = "p_Spiele";
-            p_Spiele.Padding = new Padding(4);
-            p_Spiele.Size = new Size(1030, 478);
-            p_Spiele.TabIndex = 1;
-            p_Spiele.Text = "Spiele";
-            p_Spiele.UseVisualStyleBackColor = true;
-            // 
-            // dg_Spiele
-            // 
-            dg_Spiele.AllowUserToAddRows = false;
-            dg_Spiele.AllowUserToDeleteRows = false;
-            dg_Spiele.AllowUserToOrderColumns = true;
-            dg_Spiele.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dg_Spiele.BorderStyle = BorderStyle.None;
-            dg_Spiele.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dg_Spiele.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dg_Spiele.Dock = DockStyle.Fill;
-            dg_Spiele.Location = new Point(4, 4);
-            dg_Spiele.Margin = new Padding(4);
-            dg_Spiele.Name = "dg_Spiele";
-            dg_Spiele.ReadOnly = true;
-            dg_Spiele.RowHeadersVisible = false;
-            dg_Spiele.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dg_Spiele.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            dg_Spiele.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dg_Spiele.Size = new Size(1022, 470);
-            dg_Spiele.TabIndex = 1;
-            // 
-            // p_Vergleich
-            // 
-            p_Vergleich.Controls.Add(dg_Vergleich);
-            p_Vergleich.Location = new Point(4, 39);
-            p_Vergleich.Margin = new Padding(4);
-            p_Vergleich.Name = "p_Vergleich";
-            p_Vergleich.Padding = new Padding(4);
-            p_Vergleich.Size = new Size(1030, 478);
-            p_Vergleich.TabIndex = 2;
-            p_Vergleich.Text = "Vergleich";
-            p_Vergleich.UseVisualStyleBackColor = true;
-            // 
-            // dg_Vergleich
-            // 
-            dg_Vergleich.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dg_Vergleich.Dock = DockStyle.Fill;
-            dg_Vergleich.Location = new Point(4, 4);
-            dg_Vergleich.Margin = new Padding(4);
-            dg_Vergleich.Name = "dg_Vergleich";
-            dg_Vergleich.RowHeadersWidth = 51;
-            dg_Vergleich.Size = new Size(1022, 470);
-            dg_Vergleich.TabIndex = 0;
+            ms_1.BackColor = SystemColors.ButtonHighlight;
+            ms_1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ms_1.GripStyle = ToolStripGripStyle.Visible;
+            ms_1.ImageScalingSize = new Size(20, 20);
+            ms_1.Items.AddRange(new ToolStripItem[] { ergebnisseAktualisierenToolStripMenuItem, prognToolStripMenuItem, spieleAnzeigenToolStripMenuItem, spieltageToolStripMenuItem });
+            ms_1.Location = new Point(0, 0);
+            ms_1.Name = "ms_1";
+            ms_1.Padding = new Padding(8, 2, 0, 2);
+            ms_1.Size = new Size(973, 38);
+            ms_1.TabIndex = 10;
+            ms_1.Text = "menuStrip1";
             // 
             // HauptForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1049, 739);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(973, 720);
             Controls.Add(tbc1);
             Controls.Add(ms_1);
             Controls.Add(n_Tag);
@@ -294,8 +312,6 @@
             Text = "Bundesliga Analyzer";
             Load += HauptForm_Load;
             ((System.ComponentModel.ISupportInitialize)n_Tag).EndInit();
-            ms_1.ResumeLayout(false);
-            ms_1.PerformLayout();
             tbc1.ResumeLayout(false);
             p_Prognose.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dg_Prognose).EndInit();
@@ -303,6 +319,8 @@
             ((System.ComponentModel.ISupportInitialize)dg_Spiele).EndInit();
             p_Vergleich.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dg_Vergleich).EndInit();
+            ms_1.ResumeLayout(false);
+            ms_1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -316,11 +334,6 @@
         private Label l3;
         private NumericUpDown n_Tag;
         private Button bt_Update;
-        private MenuStrip ms_1;
-        private ToolStripMenuItem ergebnisseAktualisierenToolStripMenuItem;
-        private ToolStripMenuItem prognToolStripMenuItem;
-        private ToolStripMenuItem spieleAnzeigenToolStripMenuItem;
-        private ToolStripMenuItem spieltageToolStripMenuItem;
         private TabControl tbc1;
         private TabPage p_Prognose;
         private TabPage p_Spiele;
@@ -328,5 +341,10 @@
         private DataGridView dg_Vergleich;
         private DataGridView dg_Prognose;
         private DataGridView dg_Spiele;
+        private ToolStripMenuItem ergebnisseAktualisierenToolStripMenuItem;
+        private ToolStripMenuItem prognToolStripMenuItem;
+        private ToolStripMenuItem spieleAnzeigenToolStripMenuItem;
+        private ToolStripMenuItem spieltageToolStripMenuItem;
+        private MenuStrip ms_1;
     }
 }

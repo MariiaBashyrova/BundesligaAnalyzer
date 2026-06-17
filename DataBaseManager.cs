@@ -376,6 +376,72 @@ namespace BundesligaAnalyser
             return table;
         }
 
+        public DataTable CompareMatchdays(string league, string season_, int mday)
+        {
+            DataTable table = new DataTable(); //
+            SqliteConnection connection =
+                new SqliteConnection(сonnectionString);
+            int liga_Id = league == "BL1" ? 1 : 2;
+            int season = int.Parse(season_);
+
+            try
+            {
+                connection.Open();
+
+                string abfrage = @"WITH f1 AS (
+                        SELECT *
+                        FROM forecasts
+                        WHERE liga_id =  @liga AND season = @season AND matchday = @matchday1
+                        AND created_at = (
+                            SELECT MAX(created_at)
+                            FROM forecasts
+                            WHERE liga_id = @liga AND season = @season AND matchday = @matchday1
+                        )
+                    ),
+                    f2 AS (
+                        SELECT *
+                        FROM forecasts
+                        WHERE liga_id = @liga AND season = @season AND  matchday = @matchday2
+                        AND created_at = (
+                            SELECT MAX(created_at)
+                            FROM forecasts
+                            WHERE liga_id = @liga AND season = @season AND matchday = @matchday2
+                        )
+                    )
+
+                    SELECT 
+                        f1.team_name AS Mannschaft,
+                        f1.platz AS Platz_alt,
+                        f2.platz AS Platz_neu,
+                        CAST((f1.platz - f2.platz) AS TEXT) AS Aenderung
+
+                    FROM f1
+                    JOIN f2 
+                        ON f1.team_id = f2.team_id AND f1.team_id IS NOT NULL
+
+                    ORDER BY Platz_neu;";
+                SqliteCommand cmd =
+                   new SqliteCommand(abfrage, connection);
+
+                cmd.Parameters.AddWithValue("@liga", liga_Id);
+                cmd.Parameters.AddWithValue("@season", season);
+                cmd.Parameters.AddWithValue("@matchday1", mday-1);
+                cmd.Parameters.AddWithValue("@matchday2", mday);
+
+                SqliteDataReader reader = cmd.ExecuteReader();
+
+                table.Load(reader);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+
+            }
+            finally { connection.Close(); }
+
+            return table;
+        }
         public bool SaveForecast(DataTable table, string league, string season_, int mday)
         {
             

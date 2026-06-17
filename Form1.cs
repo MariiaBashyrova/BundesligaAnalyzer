@@ -101,14 +101,14 @@ namespace BundesligaAnalyser
             {
                 if (col.Name == "Datum")
                 {
-                    col.Width = 120;
+                    col.Width = 80;
                     col.DefaultCellStyle.Alignment =
                         DataGridViewContentAlignment.MiddleCenter;
                 }
                 else if (col.Name == "Heim" ||
                          col.Name == "Gast")
                 {
-                    col.Width = 180;
+                    col.Width = 120;
                     col.DefaultCellStyle.Alignment =
                         DataGridViewContentAlignment.MiddleLeft;
                 }
@@ -123,8 +123,53 @@ namespace BundesligaAnalyser
 
         private void spieltageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Spieltage");
+            //MessageBox.Show("Spieltage");
             tbc1.SelectedTab = p_Vergleich;
+            DataBaseManager db = new DataBaseManager();
+
+           
+            dg_Vergleich.DataSource = db.CompareMatchdays(cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
+
+            for (int i = 0; i < dg_Vergleich.Rows.Count; i++)
+            {
+                
+                if (dg_Vergleich.Rows[i].Cells["Aenderung"].Value.ToString() == "0")
+                {
+                   
+                    dg_Vergleich.Rows[i].Cells["Aenderung"].Value = "-";
+                }
+                else if (dg_Vergleich.Rows[i].Cells["Aenderung"].Value.ToString().Contains("-"))
+                {
+                    dg_Vergleich.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(250, 214, 214);
+                    dg_Vergleich.Rows[i].Cells["Aenderung"].Value += @"↓";
+                    
+                }
+                else
+                {
+                    dg_Vergleich.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(214, 250, 214);
+                    dg_Vergleich.Rows[i].Cells["Aenderung"].Value += @"↑";
+
+                }
+            }
+
+            
+
+            foreach (DataGridViewColumn col in dg_Vergleich.Columns)
+            {
+                if (col.Name == "Mannschaft")
+                {
+                    col.Width = 120;
+                    col.DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleLeft;
+                }
+
+                else
+                {
+                    col.Width = 40;
+                    col.DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleCenter;
+                }
+            }
         }
 
         private void HauptForm_Load(object sender, EventArgs e)
