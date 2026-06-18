@@ -11,9 +11,10 @@ namespace BundesligaAnalyser
 {
     internal class APIManager
     {
-        //Dieser Abschnitt wurde mithilfe des GPT-Chats erstellt
+        // Dieser Code wurde mithilfe von ChatGPT entwickelt und anschließend angepasst
         public string GetJson(string league, string season)
         {
+            // Daten aus der OpenLigaDB laden
             string url =
                 $"https://api.openligadb.de/getmatchdata/{league.ToLower()}/{season}";
 
@@ -24,7 +25,7 @@ namespace BundesligaAnalyser
             return json;
         }
 
-        //Dieser Abschnitt wurde mithilfe des GPT-Chats erstellt
+        // Dieser Code wurde mithilfe von ChatGPT entwickelt und anschließend angepasst
         public void ReadJson(string json, string league, string season)
         {
             JsonDocument document = JsonDocument.Parse(json);
@@ -40,11 +41,9 @@ namespace BundesligaAnalyser
 
             int season_int = int.Parse(season);
 
-
             foreach (JsonElement match in root.EnumerateArray())
             {
                 
-
                 int matchId = 
                     match.GetProperty("matchID").GetInt32();
 
@@ -105,14 +104,8 @@ namespace BundesligaAnalyser
                     }
                 }
                 
-                //MessageBox.Show($"{matchId}\n{homeName} - {awayName}  {homeGoals} : {awayGoals} ");
-
-
                 check = db.AddMatch(matchId, id_Liga, season_int, homeId, awayId, homeGoals, awayGoals, matchday, played, matchDateTime);
                 
-
-
-                // break;
             }
 
             if (check)

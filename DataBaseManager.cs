@@ -12,14 +12,12 @@ using System.Xml.Linq;
 using Microsoft.Data.Sqlite;
 using static System.Net.Mime.MediaTypeNames;
 
-
 namespace BundesligaAnalyser
 {
     internal class DataBaseManager
     {
         private const string сonnectionString =
             "Data Source=bundesliga.db";
-
         public void CreateDatabase()
         {
             SqliteConnection connection =
@@ -63,7 +61,6 @@ namespace BundesligaAnalyser
                     created_at TEXT
                 );";
 
-
             try
             {
                 connection.Open();
@@ -79,7 +76,6 @@ namespace BundesligaAnalyser
                 cmd.CommandText = createForecasts;
                 cmd.ExecuteNonQuery();
 
-                //MessageBox.Show("Tabellen wurden erstellt.");
             }
             catch (Exception ex)
             {
@@ -164,7 +160,6 @@ namespace BundesligaAnalyser
             int liga_Id = league == "BL1" ? 1 : 2;
             int season = int.Parse(season_);
 
-
             try
             {
                 connection.Open();
@@ -203,7 +198,6 @@ namespace BundesligaAnalyser
                         dt.ToString("dd.MM.yyyy HH:mm");
                 }
 
-
             }
             catch (Exception ex)
             {
@@ -212,7 +206,6 @@ namespace BundesligaAnalyser
 
             }
             finally { connection.Close(); }
-
 
             return table;
         }
@@ -224,7 +217,6 @@ namespace BundesligaAnalyser
                 new SqliteConnection(сonnectionString);
             int liga_Id = league == "BL1" ? 1 : 2;
             int season = int.Parse(season_);
-
 
             try
             {
@@ -362,18 +354,12 @@ namespace BundesligaAnalyser
 
                 table.Load(reader);
 
-
-
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
-
             }
             finally { connection.Close(); }
-
 
             return table;
         }
