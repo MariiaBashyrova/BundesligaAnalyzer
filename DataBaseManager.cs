@@ -4,11 +4,13 @@ using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection.Metadata;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Microsoft.Data.Sqlite;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace BundesligaAnalyser
@@ -498,13 +500,32 @@ namespace BundesligaAnalyser
 
         public void TestDaten()
         {
+            //Für den Test müssen einige Daten gelöscht werden,
+            //    um zu zeigen, wie die Prognose tatsächlich funktioniert. 
+            //    Da derzeit alle Spiele der Bundesliga bereits ausgetragen sind
             DataTable table = new DataTable();
             SqliteConnection connection =
                 new SqliteConnection(сonnectionString);
-            int liga_Id = 1;
-            int season = 2025;
-            int mday = 34;
             
+
+            string update = @"
+            UPDATE matches 
+            SET 
+                home_goals=0,
+                away_goals=0,
+                played=0
+            WHERE match_datetime > '2026-05-10';";
+
+            try
+            {
+                connection.Open();
+                SqliteCommand cmd = connection.CreateCommand();
+                cmd.CommandText = update;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show("Fehler beim Update in die Tabelle: " + ex.Message);}
+            finally { connection.Close(); }
+
             
         }
 

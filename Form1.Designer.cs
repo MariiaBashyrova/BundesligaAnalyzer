@@ -51,6 +51,7 @@
             spieltageToolStripMenuItem = new ToolStripMenuItem();
             ms_1 = new MenuStrip();
             TestButton = new Button();
+            CSVtoolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)n_Tag).BeginInit();
             tbc1.SuspendLayout();
             p_Prognose.SuspendLayout();
@@ -140,7 +141,7 @@
             tbc1.Margin = new Padding(4);
             tbc1.Name = "tbc1";
             tbc1.SelectedIndex = 0;
-            tbc1.Size = new Size(962, 502);
+            tbc1.Size = new Size(1121, 502);
             tbc1.TabIndex = 11;
             // 
             // p_Prognose
@@ -150,7 +151,7 @@
             p_Prognose.Margin = new Padding(4);
             p_Prognose.Name = "p_Prognose";
             p_Prognose.Padding = new Padding(4);
-            p_Prognose.Size = new Size(954, 459);
+            p_Prognose.Size = new Size(1113, 459);
             p_Prognose.TabIndex = 0;
             p_Prognose.Text = "Turniertabelle";
             p_Prognose.UseVisualStyleBackColor = true;
@@ -176,7 +177,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dg_Prognose.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dg_Prognose.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dg_Prognose.Size = new Size(946, 451);
+            dg_Prognose.Size = new Size(1105, 451);
             dg_Prognose.TabIndex = 1;
             dg_Prognose.CellContentDoubleClick += dg_Prognose_CellContentDoubleClick;
             // 
@@ -253,42 +254,42 @@
             // ergebnisseAktualisierenToolStripMenuItem
             // 
             ergebnisseAktualisierenToolStripMenuItem.Name = "ergebnisseAktualisierenToolStripMenuItem";
-            ergebnisseAktualisierenToolStripMenuItem.Size = new Size(264, 34);
+            ergebnisseAktualisierenToolStripMenuItem.Size = new Size(235, 32);
             ergebnisseAktualisierenToolStripMenuItem.Text = "Ergebnisse aktualisieren";
             ergebnisseAktualisierenToolStripMenuItem.Click += ergebnisseAktualisierenToolStripMenuItem_Click;
             // 
             // prognToolStripMenuItem
             // 
             prognToolStripMenuItem.Name = "prognToolStripMenuItem";
-            prognToolStripMenuItem.Size = new Size(231, 34);
+            prognToolStripMenuItem.Size = new Size(207, 32);
             prognToolStripMenuItem.Text = "Prognose berechnen";
             prognToolStripMenuItem.Click += prognToolStripMenuItem_Click;
             // 
             // spieleAnzeigenToolStripMenuItem
             // 
             spieleAnzeigenToolStripMenuItem.Name = "spieleAnzeigenToolStripMenuItem";
-            spieleAnzeigenToolStripMenuItem.Size = new Size(182, 34);
+            spieleAnzeigenToolStripMenuItem.Size = new Size(164, 32);
             spieleAnzeigenToolStripMenuItem.Text = "Spiele anzeigen";
             spieleAnzeigenToolStripMenuItem.Click += spieleAnzeigenToolStripMenuItem_Click;
             // 
             // spieltageToolStripMenuItem
             // 
             spieltageToolStripMenuItem.Name = "spieltageToolStripMenuItem";
-            spieltageToolStripMenuItem.Size = new Size(239, 34);
+            spieltageToolStripMenuItem.Size = new Size(215, 32);
             spieltageToolStripMenuItem.Text = "Spieltage vergleichen";
             spieltageToolStripMenuItem.Click += spieltageToolStripMenuItem_Click;
             // 
             // ms_1
             // 
             ms_1.BackColor = SystemColors.ButtonHighlight;
-            ms_1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ms_1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ms_1.GripStyle = ToolStripGripStyle.Visible;
             ms_1.ImageScalingSize = new Size(20, 20);
-            ms_1.Items.AddRange(new ToolStripItem[] { ergebnisseAktualisierenToolStripMenuItem, prognToolStripMenuItem, spieleAnzeigenToolStripMenuItem, spieltageToolStripMenuItem });
+            ms_1.Items.AddRange(new ToolStripItem[] { ergebnisseAktualisierenToolStripMenuItem, prognToolStripMenuItem, spieleAnzeigenToolStripMenuItem, spieltageToolStripMenuItem, CSVtoolStripMenuItem });
             ms_1.Location = new Point(0, 0);
             ms_1.Name = "ms_1";
             ms_1.Padding = new Padding(8, 2, 0, 2);
-            ms_1.Size = new Size(973, 38);
+            ms_1.Size = new Size(1132, 36);
             ms_1.TabIndex = 10;
             ms_1.Text = "menuStrip1";
             // 
@@ -302,12 +303,19 @@
             TestButton.UseVisualStyleBackColor = true;
             TestButton.Click += TestButton_Click;
             // 
+            // CSVtoolStripMenuItem
+            // 
+            CSVtoolStripMenuItem.Name = "CSVtoolStripMenuItem";
+            CSVtoolStripMenuItem.Size = new Size(269, 32);
+            CSVtoolStripMenuItem.Text = "Aktuelle Tabelle exportieren";
+            CSVtoolStripMenuItem.Click += CSVtoolStripMenuItem_Click;
+            // 
             // HauptForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(973, 720);
+            ClientSize = new Size(1132, 720);
             Controls.Add(TestButton);
             Controls.Add(tbc1);
             Controls.Add(ms_1);
@@ -359,5 +367,6 @@
         private ToolStripMenuItem spieltageToolStripMenuItem;
         private MenuStrip ms_1;
         private Button TestButton;
+        private ToolStripMenuItem CSVtoolStripMenuItem;
     }
 }

@@ -1,4 +1,6 @@
 using System.Data;
+using System.Linq.Expressions;
+using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
 using BundesligaAnalyser;
@@ -19,25 +21,31 @@ namespace BundesligaAnalyser
 
         private void ergebnisseAktualisierenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            APIManager api = new APIManager();
-
-            string json =
-                api.GetJson(cb_Liga.Text, cb_Jahr.Text);
-
-            api.ReadJson(json, cb_Liga.Text, cb_Jahr.Text);
-
+            ImportiereErgebnisseAusApi(cb_Liga.Text, cb_Jahr.Text);
 
             tbc1.SelectedTab = p_Prognose;
         }
 
+        private void ImportiereErgebnisseAusApi(string league, string jahr)
+        {
+            APIManager api = new APIManager();
+
+            string json =
+                api.GetJson(league, jahr);
+
+            api.ReadJson(json, league, jahr);
+        }
+
         private void prognToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Prognose");
+
             DataBaseManager db = new DataBaseManager();
             DataTable dt = db.PrognoseBerechnen(cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
+
+            bool check = db.SaveForecast(dt, cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
+
             dg_Prognose.DataSource = dt;
             tbc1.SelectedTab = p_Prognose;
-            bool check = db.SaveForecast(dt, cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
             FormatPrognoseTabelle();
         }
 
@@ -216,27 +224,107 @@ namespace BundesligaAnalyser
         private void TestButton_Click(object sender, EventArgs e)
         {
             DataBaseManager db = new DataBaseManager();
+            bool check;
             if (!db.EsGibtDaten(1, 2025, 1))
             {
                 //Wenn es keine Daten gibt, muss die Daten herunterladen
-                APIManager api = new APIManager();
-
-                string json = api.GetJson("BL1","2025");
-
-                api.ReadJson(json, "BL1", "2025");
+                ImportiereErgebnisseAusApi("BL1", "2025");
 
             }
             if (!db.EsGibtDaten(2, 2025, 1))
             {
                 //Wenn es keine Daten gibt, muss die Daten herunterladen
-                APIManager api = new APIManager();
-
-                string json = api.GetJson("BL2", "2025");
-
-                api.ReadJson(json, "BL2 ", "2025");
+                ImportiereErgebnisseAusApi("BL2", "2025");
 
             }
             db.TestDaten();
+            check = db.SaveForecast(db.PrognoseBerechnen("1", "2025", 34), "1", "2025", 34);
+            check = db.SaveForecast(db.PrognoseBerechnen("1", "2025", 33), "1", "2025", 33);
+            check = db.SaveForecast(db.PrognoseBerechnen("2", "2025", 34), "2", "2025", 34);
+            check = db.SaveForecast(db.PrognoseBerechnen("2", "2025", 33), "2", "2025", 33);
+        }
+
+        private void CSVtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView currentGrid;
+
+            if (tbc1.SelectedTab == p_Spiele)
+            {
+                currentGrid = dg_Spiele;
+            }
+            else if (tbc1.SelectedTab == p_Prognose)
+            {
+                currentGrid = dg_Prognose;
+            }
+            else
+            {
+                currentGrid = dg_Vergleich;
+            }
+
+            ExportToCsv(currentGrid);
+            
+        }
+
+        //Dieser Abschnitt wurde mithilfe des GPT-Chats erstellt
+        private void ExportToCsv(DataGridView dgv)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "CSV-Dateien (*.csv)|*.csv";
+            saveFileDialog.FileName = "Bundesliga.csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+
+                using (StreamWriter writer =
+                       new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8))
+                {
+                    // Kopfzeilen 
+                    for (int i = 0; i < dgv.Columns.Count; i++)
+                    {
+                        writer.Write(dgv.Columns[i].HeaderText);
+
+                        if (i < dgv.Columns.Count - 1)
+                            writer.Write(";");
+                    }
+
+                    writer.WriteLine();
+
+                    // Zeilen
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+                            for (int i = 0; i < dgv.Columns.Count; i++)
+                            {
+                                //writer.Write(row.Cells[i].Value);
+                                if (dgv.Columns[i].HeaderText == "Punktbereich" ||
+                                    dgv.Columns[i].HeaderText == "Platzprognose" ||
+                                        dgv.Columns[i].HeaderText == "Ergebnis")
+                                {
+                                    writer.Write("=\"" + row.Cells[i].Value + "\"");
+                                }
+                                else
+                                {
+                                    writer.Write(row.Cells[i].Value);
+                                }
+
+                                if (i < dgv.Columns.Count - 1)
+                                    writer.Write(";");
+                            }
+
+                            writer.WriteLine();
+                        }
+                    }
+                }
+
+                MessageBox.Show("CSV-Datei erfolgreich gespeichert.");
+                }
+                catch (Exception ex) { MessageBox.Show("Fehler beim Speichern: " + ex.Message); }
+
+            }
         }
     }
 }
