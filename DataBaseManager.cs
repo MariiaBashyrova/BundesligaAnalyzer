@@ -79,7 +79,8 @@ namespace BundesligaAnalyser
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fehler beim Erstellen von Tabellen: " + ex.Message);
+                MessageBox.Show("Fehler beim Erstellen von Tabellen: " +
+                    ex.Message);
             }
             finally
             {

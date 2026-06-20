@@ -52,6 +52,7 @@
             ms_1 = new MenuStrip();
             CSVtoolStripMenuItem = new ToolStripMenuItem();
             TestButton = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)n_Tag).BeginInit();
             tbc1.SuspendLayout();
             p_Prognose.SuspendLayout();
@@ -141,7 +142,7 @@
             tbc1.Margin = new Padding(4);
             tbc1.Name = "tbc1";
             tbc1.SelectedIndex = 0;
-            tbc1.Size = new Size(1121, 502);
+            tbc1.Size = new Size(1272, 502);
             tbc1.TabIndex = 11;
             // 
             // p_Prognose
@@ -151,7 +152,7 @@
             p_Prognose.Margin = new Padding(4);
             p_Prognose.Name = "p_Prognose";
             p_Prognose.Padding = new Padding(4);
-            p_Prognose.Size = new Size(1113, 459);
+            p_Prognose.Size = new Size(1264, 459);
             p_Prognose.TabIndex = 0;
             p_Prognose.Text = "Turniertabelle";
             p_Prognose.UseVisualStyleBackColor = true;
@@ -177,7 +178,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dg_Prognose.RowsDefaultCellStyle = dataGridViewCellStyle1;
             dg_Prognose.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dg_Prognose.Size = new Size(1105, 451);
+            dg_Prognose.Size = new Size(1256, 451);
             dg_Prognose.TabIndex = 1;
             dg_Prognose.CellContentDoubleClick += dg_Prognose_CellContentDoubleClick;
             // 
@@ -188,7 +189,7 @@
             p_Spiele.Margin = new Padding(4);
             p_Spiele.Name = "p_Spiele";
             p_Spiele.Padding = new Padding(4);
-            p_Spiele.Size = new Size(1113, 459);
+            p_Spiele.Size = new Size(1264, 459);
             p_Spiele.TabIndex = 1;
             p_Spiele.Text = "Spiele";
             p_Spiele.UseVisualStyleBackColor = true;
@@ -215,7 +216,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dg_Spiele.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dg_Spiele.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dg_Spiele.Size = new Size(1105, 451);
+            dg_Spiele.Size = new Size(1256, 451);
             dg_Spiele.TabIndex = 1;
             // 
             // p_Vergleich
@@ -225,7 +226,7 @@
             p_Vergleich.Margin = new Padding(4);
             p_Vergleich.Name = "p_Vergleich";
             p_Vergleich.Padding = new Padding(4);
-            p_Vergleich.Size = new Size(1113, 459);
+            p_Vergleich.Size = new Size(1264, 459);
             p_Vergleich.TabIndex = 2;
             p_Vergleich.Text = "Vergleich";
             p_Vergleich.UseVisualStyleBackColor = true;
@@ -248,7 +249,7 @@
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dg_Vergleich.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dg_Vergleich.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dg_Vergleich.Size = new Size(1105, 451);
+            dg_Vergleich.Size = new Size(1256, 451);
             dg_Vergleich.TabIndex = 0;
             // 
             // ergebnisseAktualisierenToolStripMenuItem
@@ -289,7 +290,7 @@
             ms_1.Location = new Point(0, 0);
             ms_1.Name = "ms_1";
             ms_1.Padding = new Padding(8, 2, 0, 2);
-            ms_1.Size = new Size(1132, 36);
+            ms_1.Size = new Size(1283, 36);
             ms_1.TabIndex = 10;
             ms_1.Text = "menuStrip1";
             // 
@@ -302,20 +303,31 @@
             // 
             // TestButton
             // 
-            TestButton.Location = new Point(583, 64);
+            TestButton.Location = new Point(1196, 39);
             TestButton.Name = "TestButton";
-            TestButton.Size = new Size(171, 61);
+            TestButton.Size = new Size(82, 177);
             TestButton.TabIndex = 12;
             TestButton.Text = "Daten für den Test vorbereiten";
             TestButton.UseVisualStyleBackColor = true;
             TestButton.Click += TestButton_Click;
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Blue;
+            label1.Location = new Point(583, 36);
+            label1.Name = "label1";
+            label1.Size = new Size(589, 214);
+            label1.TabIndex = 13;
+            label1.Text = resources.GetString("label1.Text");
             // 
             // HauptForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1132, 720);
+            ClientSize = new Size(1283, 720);
+            Controls.Add(label1);
             Controls.Add(TestButton);
             Controls.Add(tbc1);
             Controls.Add(ms_1);
@@ -368,5 +380,6 @@
         private MenuStrip ms_1;
         private Button TestButton;
         private ToolStripMenuItem CSVtoolStripMenuItem;
+        private Label label1;
     }
 }

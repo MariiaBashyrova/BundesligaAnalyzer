@@ -20,14 +20,28 @@ namespace BundesligaAnalyser
 
             HttpClient client = new HttpClient();
 
-            string json = client.GetStringAsync(url).Result;
-
-            return json;
+            try
+            {
+                string json = client.GetStringAsync(url).Result;
+                return json;
+            }
+            catch
+            {
+                MessageBox.Show(
+                    "Die OpenLigaDB konnte nicht erreicht werden.",
+                    "Fehler"
+                );
+                return "";
+            }
         }
 
         // Dieser Code wurde mithilfe von ChatGPT entwickelt und anschließend angepasst
         public void ReadJson(string json, string league, string season)
         {
+            if (json=="")
+            {
+                return;
+            }
             JsonDocument document = JsonDocument.Parse(json);
             DataBaseManager db = new DataBaseManager();
 
