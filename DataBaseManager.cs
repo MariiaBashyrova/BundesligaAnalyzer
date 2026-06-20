@@ -171,7 +171,7 @@ namespace BundesligaAnalyser
                     m.match_datetime AS Datum,
                     th.name AS Heim,
                     ta.name AS Gast,
-                    IFNULL(m.home_goals || ':' || m.away_goals,""-"") AS Ergebnis
+                    CAST (IFNULL(m.home_goals || ':' || m.away_goals,""-"") AS TEXT) AS Ergebnis
                 FROM matches m
                 JOIN teams th ON m.home_team_id = th.id
                 JOIN teams ta ON m.away_team_id = ta.id
@@ -372,6 +372,14 @@ namespace BundesligaAnalyser
             int liga_Id = league == "BL1" ? 1 : 2;
             int season = int.Parse(season_);
 
+            if (!EsGibtForecast(liga_Id,season,mday-1) || !EsGibtForecast(liga_Id, season, mday))
+            {
+                MessageBox.Show("Es liegen nicht genügend Daten für einen Vergleich vor.\n " +
+                    "Führen Sie die Prognoseberechnung für den aktuellen \n" +
+                    "und die vergangenen Spieltage durch.");
+                
+            }
+
             try
             {
                 connection.Open();
@@ -536,6 +544,39 @@ namespace BundesligaAnalyser
 
                 SqliteDataReader reader = cmd.ExecuteReader();
                 if (reader.Read()) check = true; 
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+
+            }
+            finally { connection.Close(); }
+            return check;
+        }
+
+        public bool EsGibtForecast(int liga_id, int season, int mday)
+        {
+            bool check = false;
+            SqliteConnection connection =
+               new SqliteConnection(сonnectionString);
+            try
+            {
+                connection.Open();
+
+                string abfrage = @"SELECT * FROM forecasts WHERE
+                    liga_id = @liga AND season = @season AND matchday = @matchday";
+
+                SqliteCommand cmd =
+                    new SqliteCommand(abfrage, connection);
+
+                cmd.Parameters.AddWithValue("@liga", liga_id);
+                cmd.Parameters.AddWithValue("@season", season);
+                cmd.Parameters.AddWithValue("@matchday", mday);
+
+                SqliteDataReader reader = cmd.ExecuteReader();
+                if (reader.Read()) check = true;
 
             }
             catch (Exception ex)

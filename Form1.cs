@@ -142,15 +142,18 @@ namespace BundesligaAnalyser
             //MessageBox.Show("Spieltage");
             tbc1.SelectedTab = p_Vergleich;
             DataBaseManager db = new DataBaseManager();
-
-
-            dg_Vergleich.DataSource = db.CompareMatchdays(cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
+            dg_Vergleich.DataSource = null;
+            dg_Vergleich.Columns.Clear();
+            DataTable dt = db.CompareMatchdays(cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
+            dg_Vergleich.DataSource = dt;
             FormatVergleichTabelle();
 
         }
 
         private void FormatVergleichTabelle()
+
         {
+            
             for (int i = 0; i < dg_Vergleich.Rows.Count; i++)
             {
                 string valuestr = dg_Vergleich.Rows[i].Cells["Aenderung"].Value.ToString();
@@ -158,17 +161,19 @@ namespace BundesligaAnalyser
 
                 if (valuestr == "0")
                 {
-
-                    dg_Vergleich.Rows[i].Cells["Aenderung"].Value = "-";
+                    //MessageBox.Show("0");
+                    dg_Vergleich.Rows[i].Cells["Aenderung"].Value = @"-";
                 }
                 else if (valuestr.Contains("-"))
                 {
+                    //MessageBox.Show("minus");
                     dg_Vergleich.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(250, 214, 214);
                     dg_Vergleich.Rows[i].Cells["Aenderung"].Value = @"↓" + valuestr.Replace("-", "");
 
                 }
                 else
                 {
+                    //MessageBox.Show("plus");
                     dg_Vergleich.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(214, 250, 214);
                     dg_Vergleich.Rows[i].Cells["Aenderung"].Value = @"↑" + valuestr;
 

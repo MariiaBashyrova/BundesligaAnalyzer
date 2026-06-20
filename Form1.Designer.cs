@@ -50,8 +50,8 @@
             spieleAnzeigenToolStripMenuItem = new ToolStripMenuItem();
             spieltageToolStripMenuItem = new ToolStripMenuItem();
             ms_1 = new MenuStrip();
-            TestButton = new Button();
             CSVtoolStripMenuItem = new ToolStripMenuItem();
+            TestButton = new Button();
             ((System.ComponentModel.ISupportInitialize)n_Tag).BeginInit();
             tbc1.SuspendLayout();
             p_Prognose.SuspendLayout();
@@ -188,7 +188,7 @@
             p_Spiele.Margin = new Padding(4);
             p_Spiele.Name = "p_Spiele";
             p_Spiele.Padding = new Padding(4);
-            p_Spiele.Size = new Size(954, 459);
+            p_Spiele.Size = new Size(1113, 459);
             p_Spiele.TabIndex = 1;
             p_Spiele.Text = "Spiele";
             p_Spiele.UseVisualStyleBackColor = true;
@@ -215,7 +215,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dg_Spiele.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dg_Spiele.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dg_Spiele.Size = new Size(946, 451);
+            dg_Spiele.Size = new Size(1105, 451);
             dg_Spiele.TabIndex = 1;
             // 
             // p_Vergleich
@@ -225,7 +225,7 @@
             p_Vergleich.Margin = new Padding(4);
             p_Vergleich.Name = "p_Vergleich";
             p_Vergleich.Padding = new Padding(4);
-            p_Vergleich.Size = new Size(954, 459);
+            p_Vergleich.Size = new Size(1113, 459);
             p_Vergleich.TabIndex = 2;
             p_Vergleich.Text = "Vergleich";
             p_Vergleich.UseVisualStyleBackColor = true;
@@ -248,7 +248,7 @@
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dg_Vergleich.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dg_Vergleich.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dg_Vergleich.Size = new Size(946, 451);
+            dg_Vergleich.Size = new Size(1105, 451);
             dg_Vergleich.TabIndex = 0;
             // 
             // ergebnisseAktualisierenToolStripMenuItem
@@ -293,22 +293,22 @@
             ms_1.TabIndex = 10;
             ms_1.Text = "menuStrip1";
             // 
-            // TestButton
-            // 
-            TestButton.Location = new Point(646, 63);
-            TestButton.Name = "TestButton";
-            TestButton.Size = new Size(171, 61);
-            TestButton.TabIndex = 12;
-            TestButton.Text = "Daten für den Test vorbereiten";
-            TestButton.UseVisualStyleBackColor = true;
-            TestButton.Click += TestButton_Click;
-            // 
             // CSVtoolStripMenuItem
             // 
             CSVtoolStripMenuItem.Name = "CSVtoolStripMenuItem";
             CSVtoolStripMenuItem.Size = new Size(269, 32);
             CSVtoolStripMenuItem.Text = "Aktuelle Tabelle exportieren";
             CSVtoolStripMenuItem.Click += CSVtoolStripMenuItem_Click;
+            // 
+            // TestButton
+            // 
+            TestButton.Location = new Point(583, 64);
+            TestButton.Name = "TestButton";
+            TestButton.Size = new Size(171, 61);
+            TestButton.TabIndex = 12;
+            TestButton.Text = "Daten für den Test vorbereiten";
+            TestButton.UseVisualStyleBackColor = true;
+            TestButton.Click += TestButton_Click;
             // 
             // HauptForm
             // 
