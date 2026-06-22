@@ -43,7 +43,8 @@ namespace BundesligaAnalyser
             DataTable dt = db.PrognoseBerechnen(cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
 
             bool check = db.SaveForecast(dt, cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
-
+            dg_Prognose.DataSource = null;
+            dg_Prognose.Columns.Clear();
             dg_Prognose.DataSource = dt;
             tbc1.SelectedTab = p_Prognose;
             FormatPrognoseTabelle();
@@ -95,6 +96,8 @@ namespace BundesligaAnalyser
             DataBaseManager db = new DataBaseManager();
 
             tbc1.SelectedTab = p_Spiele;
+            dg_Spiele.DataSource = null;
+            dg_Spiele.Columns.Clear();
             dg_Spiele.DataSource = db.GetMatches(cb_Liga.Text, cb_Jahr.Text, (int)n_Tag.Value);
             FormatSpieleTabelle();
         }

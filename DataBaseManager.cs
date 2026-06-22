@@ -23,13 +23,18 @@ namespace BundesligaAnalyser
             SqliteConnection connection =
                 new SqliteConnection(сonnectionString);
 
+            //string createTeams = @"
+            //CREATE TABLE IF NOT EXISTS teams (
+            //    id INTEGER PRIMARY KEY,
+            //    season INTEGER,
+            //    liga_id INTEGER,
+            //    name TEXT NOT NULL)
+            //);";
+
             string createTeams = @"
             CREATE TABLE IF NOT EXISTS teams (
                 id INTEGER PRIMARY KEY,
-                season INTEGER,
-                liga_id INTEGER,
-                name TEXT NOT NULL
-            );";
+                name TEXT NOT NULL);";
 
             string createMatches = @"
             CREATE TABLE IF NOT EXISTS matches (
@@ -93,8 +98,12 @@ namespace BundesligaAnalyser
             SqliteConnection connection =
                 new SqliteConnection(сonnectionString);
             bool check = true;
+            //string insertTeam = @"
+            //INSERT OR IGNORE INTO teams VALUES (@id, @season, @liga_id, @name);";
+
             string insertTeam = @"
-            INSERT OR IGNORE INTO teams VALUES (@id, @season, @liga_id, @name);";
+            INSERT OR IGNORE INTO teams VALUES (@id, @name);";
+
             try
             {
                 connection.Open();
@@ -102,8 +111,8 @@ namespace BundesligaAnalyser
 
                 cmd.CommandText = insertTeam;
                 cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue("@liga_id", liga_id);
-                cmd.Parameters.AddWithValue("@season", season);
+                //cmd.Parameters.AddWithValue("@liga_id", liga_id);
+                //cmd.Parameters.AddWithValue("@season", season);
                 cmd.Parameters.AddWithValue("@name", name);
 
                 cmd.ExecuteNonQuery();
@@ -293,12 +302,15 @@ namespace BundesligaAnalyser
                             ELSE 0
                         END) AS points_max
 
+
+                    
                     FROM teams t
                     JOIN matches m
-                        ON t.liga_id = @liga and m.liga_id=@liga
-                        and t.season = @season and m.season = @season
-                        and (t.id = m.home_team_id OR t.id = m.away_team_id)
-                        and (m.matchday <= @matchday OR m.played = 0)
+                        ON (t.id = m.home_team_id OR t.id = m.away_team_id)
+
+                    WHERE m.liga_id = @liga
+                      AND m.season = @season
+                      AND (m.matchday <= @matchday OR m.played = 0)
 
                     GROUP BY t.id, t.name
                 ),
@@ -343,6 +355,15 @@ namespace BundesligaAnalyser
 
                 FROM final
                 ORDER BY Platz;";
+
+                //Alter Auschnitt 
+                //FROM teams t
+                //JOIN matches m
+                //    ON t.liga_id = @liga and m.liga_id=@liga
+                //    and t.season = @season and m.season = @season
+                //    and (t.id = m.home_team_id OR t.id = m.away_team_id)
+                //    and (m.matchday <= @matchday OR m.played = 0)
+
 
                 SqliteCommand cmd =
                     new SqliteCommand(abfrage, connection);
