@@ -23,14 +23,6 @@ namespace BundesligaAnalyser
             SqliteConnection connection =
                 new SqliteConnection(сonnectionString);
 
-            //string createTeams = @"
-            //CREATE TABLE IF NOT EXISTS teams (
-            //    id INTEGER PRIMARY KEY,
-            //    season INTEGER,
-            //    liga_id INTEGER,
-            //    name TEXT NOT NULL)
-            //);";
-
             string createTeams = @"
             CREATE TABLE IF NOT EXISTS teams (
                 id INTEGER PRIMARY KEY,
@@ -272,11 +264,11 @@ namespace BundesligaAnalyser
                             ELSE m.away_goals - m.home_goals
                         END) AS goal_diff,
 
-                        SUM(CASE
+                        SUM(CASE WHEN m.played = 1 THEN case 
                             WHEN m.home_team_id = t.id AND m.home_goals > m.away_goals THEN 3
                             WHEN m.away_team_id = t.id AND m.away_goals > m.home_goals THEN 3
                             WHEN m.home_goals = m.away_goals THEN 1
-                            ELSE 0
+                            ELSE 0 end else 0
                         END) AS points,
 
                         SUM(CASE
