@@ -64,7 +64,7 @@ The documentation includes:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/BundesligaAnalyzer.git
+git clone https://github.com/MariiaBashyrova/BundesligaAnalyzer.git
 ```
 
 2. Open the solution in Visual Studio.
