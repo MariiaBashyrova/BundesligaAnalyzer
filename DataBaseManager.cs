@@ -129,7 +129,8 @@ namespace BundesligaAnalyser
                         ON CONFLICT(id) DO UPDATE SET
                 home_goals=excluded.home_goals,
                 away_goals=excluded.away_goals,
-                played=excluded.played;";
+                played=excluded.played, 
+                match_datetime=excluded.match_datetime;";
             try
             {
                 connection.Open();
@@ -266,7 +267,9 @@ namespace BundesligaAnalyser
 
                         SUM(CASE WHEN m.played = 1 THEN case 
                             WHEN m.home_team_id = t.id AND m.home_goals > m.away_goals THEN 3
+
                             WHEN m.away_team_id = t.id AND m.away_goals > m.home_goals THEN 3
+
                             WHEN m.home_goals = m.away_goals THEN 1
                             ELSE 0 end else 0
                         END) AS points,

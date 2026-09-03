@@ -51,7 +51,6 @@
             spieltageToolStripMenuItem = new ToolStripMenuItem();
             ms_1 = new MenuStrip();
             CSVtoolStripMenuItem = new ToolStripMenuItem();
-            TestButton = new Button();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)n_Tag).BeginInit();
             tbc1.SuspendLayout();
@@ -301,23 +300,13 @@
             CSVtoolStripMenuItem.Text = "Aktuelle Tabelle exportieren";
             CSVtoolStripMenuItem.Click += CSVtoolStripMenuItem_Click;
             // 
-            // TestButton
-            // 
-            TestButton.Location = new Point(1196, 39);
-            TestButton.Name = "TestButton";
-            TestButton.Size = new Size(82, 177);
-            TestButton.TabIndex = 12;
-            TestButton.Text = "Daten für den Test vorbereiten";
-            TestButton.UseVisualStyleBackColor = true;
-            TestButton.Click += TestButton_Click;
-            // 
             // label1
             // 
             label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Blue;
-            label1.Location = new Point(583, 36);
+            label1.Location = new Point(641, 36);
             label1.Name = "label1";
-            label1.Size = new Size(589, 214);
+            label1.Size = new Size(641, 214);
             label1.TabIndex = 13;
             label1.Text = resources.GetString("label1.Text");
             // 
@@ -328,7 +317,6 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(1283, 720);
             Controls.Add(label1);
-            Controls.Add(TestButton);
             Controls.Add(tbc1);
             Controls.Add(ms_1);
             Controls.Add(n_Tag);
@@ -378,7 +366,6 @@
         private ToolStripMenuItem spieleAnzeigenToolStripMenuItem;
         private ToolStripMenuItem spieltageToolStripMenuItem;
         private MenuStrip ms_1;
-        private Button TestButton;
         private ToolStripMenuItem CSVtoolStripMenuItem;
         private Label label1;
     }
