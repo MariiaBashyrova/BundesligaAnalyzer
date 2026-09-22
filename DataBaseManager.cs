@@ -606,5 +606,32 @@ namespace BundesligaAnalyser
             return check;
         }
 
+        public int GetMatchday(int season, int liga_id)
+        {
+            SqliteConnection connection = new SqliteConnection(сonnectionString);
+            connection.Open();
+
+            string sql = @"
+        SELECT MIN(matchday)
+        FROM matches
+        WHERE liga_id = @liga
+          AND season = @season
+          AND date(match_datetime) BETWEEN date(@today, '-3 days')
+                                        AND date(@today, '+3 days');";
+
+            using var command = new SqliteCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@liga", liga_id);
+            command.Parameters.AddWithValue("@season", season);
+            command.Parameters.AddWithValue("@today", DateTime.Now.ToString("yyyy-MM-dd"));
+
+            object? result = command.ExecuteScalar();
+
+            if (result == null || result == DBNull.Value)
+                return 1;
+
+            return Convert.ToInt32(result);
+        }
+
     }
 }

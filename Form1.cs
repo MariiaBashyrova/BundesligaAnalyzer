@@ -213,7 +213,9 @@ namespace BundesligaAnalyser
             // Füge Liga-Auswahl hinzu: "BL1" = Erste Bundesliga, "BL2" = Zweite Bundesliga.
             cb_Liga.Items.AddRange(new string[] { "BL1", "BL2" });
             // Standard-Auswahl: Jahr "2025" (Index 2).
-            cb_Jahr.SelectedIndex = 2; // 2025
+            //cb_Jahr.SelectedIndex = 2; // 2025
+            int aktuellSeason = GetCurrentSeason();
+            cb_Jahr.Text = aktuellSeason.ToString();
             // Standard-Auswahl: Liga "BL1" (Index 0).
             cb_Liga.SelectedIndex = 0; // Bundeliga2
 
@@ -221,9 +223,18 @@ namespace BundesligaAnalyser
 
             DataBaseManager db = new DataBaseManager();
             db.CreateDatabase();
+            n_Tag.Value = db.GetMatchday(aktuellSeason, 1);
 
         }
+        private int GetCurrentSeason()
+        {
+            DateTime today = DateTime.Now;
 
+            if (today.Month >= 8)
+                return today.Year;
+            else
+                return today.Year - 1;
+        }
         private void dg_Prognose_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //MessageBox.Show(e.ToString()+" "+sender.ToString());
